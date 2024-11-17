@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Management</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            display: block;
+            margin: 0 auto 15px;
+            max-width: 100%;
+            border-radius: 4px;
+        }
+
+        h3 {
+            text-align: center;
+            color: #444;
+        }
+
+        p {
+            text-align: center;
+            color: #666;
+        }
+
+        .no-images {
+            text-align: center;
+            font-size: 1.2em;
+            color: #888;
+        }
+
+        .delete-button {
+            display: block;
+            margin: 10px auto;
+            width: 100px;
+            padding: 10px;
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .delete-button:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="navbar" style="background-color: #333;">
+                <li style="background-color: #333;"><a href="/admin/images">Admin Panel</a></li>
+                <li style="background-color: #333;"><a href="/">Home</a></li>
+                <li style="background-color: #333;"><a href="/auth/register">Register</a></li>
+                <li style="background-color: #333;"><a href="/auth/login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Image Management</h1>
+
+    <form action="/admin/images" method="POST" enctype="multipart/form-data">
+        <label for="title">Title:</label>
+        <input type="text" name="title" id="title" placeholder="Enter title" required>
+
+        <label for="description">Description:</label>
+        <textarea name="description" id="description" placeholder="Enter description" required></textarea>
+
+        <label for="image">Image:</label>
+        <input type="file" name="image" id="image" accept="image/*" required>
+
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>Image List</h2>
+
+    <% if (images.length === 0) { %>
+        <p class="no-images">No images available. Add a new image.</p>
+    <% } else { %>
+        <ul>
+            <% images.forEach(image => { %>
+                <li>
+                    <img src="<%= image.imagePath %>" alt="<%= image.title %>" width="150">
+                    <h3><%= image.title %></h3>
+                    <p><%= image.description %></p>
+                    <% if (admin) { %>
+                        <form action="/admin/images/delete/<%= image._id %>" method="POST">
+                            <button class="delete-button" type="submit">Delete</button>
+                        </form>
+                    <% } %>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
+</body>
+</html>

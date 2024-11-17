@@ -1,0 +1,101 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+nav {
+    background: #333;
+    padding: 1em 0;
+}
+
+.navbar {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #f9a825;
+    text-decoration: underline;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #444;
+}
+
+.carousel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 10px;
+    width: 90%;
+    gap: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.slide {
+    text-align: center;
+    width: 30%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    background: #fdfdfd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.slide:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.slide h2 {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: #555;
+}
+
+.slide p {
+    font-size: 1em;
+    color: #666;
+}
+
+footer {
+    text-align: center;
+    padding: 1em;
+    background: #333;
+    color: white;
+    margin-top: 20px;
+    font-size: 0.9em;
+    border-top: 2px solid #f9a825;
+}

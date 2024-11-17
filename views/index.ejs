@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>America - Home</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #333;
+            padding: 1em 0;
+            margin-bottom: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li {
+            margin: 0 15px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #f9a825;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #444;
+        }
+
+        .carousel {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px auto;
+            padding: 10px;
+            width: 90%;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .slide {
+            text-align: center;
+            width: 30%;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            background: #fdfdfd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .slide:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .slide h2 {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .slide p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        .no-images {
+            text-align: center;
+            font-size: 1.2em;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1em;
+            background: #333;
+            color: white;
+            margin-top: 20px;
+            font-size: 0.9em;
+            border-top: 2px solid #f9a825;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="/admin/images">Admin Panel</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/auth/register">Register</a></li>
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/yahoo">Popular Stocks</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Landmarks of America</h1>
+        <% if (images.length === 0) { %>
+            <p class="no-images">No images available. Please add a new image.</p>
+        <% } else { %>
+            <div class="carousel">
+                <% images.forEach(image => { %>
+                    <div class="slide">
+                        <img src="<%= image.imagePath %>" alt="<%= image.title %>">
+                        <h2><%= image.title %></h2>
+                        <p><%= image.description %></p>
+                        <% if (admin) { %>
+                            <form action="/admin/images/delete/<%= image._id %>" method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        <% } %>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Daiana | AITU</p>
+    </footer>
+</body>
+</html>
