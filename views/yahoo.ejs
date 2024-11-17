@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahoo Finance - Popular Stocks</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="/">Home</a></li>
+                <li><a href="/auth/register">Register</a></li>
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/yahoo">Popular Stocks</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Popular Stocks</h1>
+        <% if (stocks.length > 0) { %>
+            <ul>
+                <% stocks.forEach(stock => { %>
+                    <li>
+                        <strong><%= stock.name %> (<%= stock.symbol %>): </strong>
+                        $<%= stock.price %> (<%= stock.change %>)
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>No data available. Please try again later.</p>
+        <% } %>
+    </main>
+</body>
+</html>
